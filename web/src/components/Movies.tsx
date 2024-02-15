@@ -1,13 +1,13 @@
-import movies from "./data.json";
+import useGetMovies from "../hooks/useGetMovies";
 
 const Movies = () => {
+  const movies = useGetMovies();
+
   return (
     <div className="grid grid-cols-3 gap-8 w-[85%] mt-12 mx-auto">
       {movies.map((movie) => (
-        <div className="h-[45vh] w-full " key={movie.title}>
-          <div
-            className={`h-full w-full bg-[url('${movie.poster}')] bg-no-repeat bg-cover`}
-          ></div>
+        <div key={movie._id} className="border p-4">
+          <h2 className="text-xl font-bold">{movie.title}</h2>
         </div>
       ))}
     </div>
