@@ -1,10 +1,8 @@
-import Header from "./components/Header";
 import Movies from "./components/Movies";
 
 function App() {
   return (
     <div className="min-h-screen bg-zinc-950">
-      <Header />
       <h1 className="text-6xl font-extrabold text-white text-center my-16">
         Whatcha feeling like?
       </h1>
