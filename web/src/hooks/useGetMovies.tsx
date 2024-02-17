@@ -4,6 +4,11 @@ import axios from "axios";
 interface Movie {
   _id: string;
   title: string;
+  rating: number;
+  description: string;
+  director: string;
+  stars: string[];
+  poster: string;
 }
 
 const useGetMovies = () => {
