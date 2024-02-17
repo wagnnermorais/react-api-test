@@ -4,10 +4,14 @@ const Movies = () => {
   const movies = useGetMovies();
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-[85%] mt-12 mx-auto">
+    <div className="grid grid-cols-3 gap-4 w-[80%] my-12 mx-auto">
       {movies.map((movie) => (
-        <div key={movie._id} className="border p-4">
-          <h2 className="text-xl font-bold">{movie.title}</h2>
+        <div key={movie._id} className="border">
+          <img
+            src={movie.poster}
+            alt={movie.title}
+            className="w-full h-full object-cover"
+          />
         </div>
       ))}
     </div>
