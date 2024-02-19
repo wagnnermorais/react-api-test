@@ -10,26 +10,12 @@ const Header = () => {
         </h1>
       </Link>
       <menu>
-        <ul className="flex gap-4">
-          <li>
-            <Link to={"/"}>
-              <a
-                href="#"
-                className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200"
-              >
-                Home
-              </a>
-            </Link>
+        <ul className="flex gap-8">
+          <li className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200">
+            <Link to={"/"}>Home</Link>
           </li>
-          <li>
-            <Link to={"/register"}>
-              <a
-                href="#"
-                className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200"
-              >
-                Register
-              </a>
-            </Link>
+          <li className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200">
+            <Link to={"/register"}>Register</Link>
           </li>
         </ul>
       </menu>
