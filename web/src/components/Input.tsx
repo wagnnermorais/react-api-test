@@ -1,42 +1,30 @@
-import { useState } from "react";
 import { InputProps } from "../types/InputProps";
 
-const Input = ({ type, name, placeholder, onChange, value }: InputProps) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    if (!value) {
-      setIsFocused(false);
-    }
-  };
+const Input = ({
+  title,
+  type,
+  name,
+  placeholder,
+  onChange,
+  value,
+}: InputProps) => {
   return (
     <div className="relative">
       <input
         type={type}
         name={name}
-        placeholder={isFocused ? "" : placeholder}
+        placeholder={placeholder}
         onChange={onChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         value={value}
-        className="flex w-full p-4 outline-none duration-300 hover:bg-zinc-100 text-lg rounded placeholder-gray-700"
+        className="py-3 px-4 w-full peer rounded-md  text-sm text-gray-700 border-gray-200 border-2 focus:bg-white bg-white placeholder-shown:bg-gray-200 placeholder-shown:border-none placeholder-transparent"
+        autoComplete="off"
       />
-      {placeholder && (
-        <label
-          htmlFor={name}
-          className={`absolute left-4 transition-all duration-500 ${
-            isFocused || value
-              ? "-top-4 text-black text-lg font-bold"
-              : "top-0 text-white"
-          }`}
-        >
-          {placeholder}
-        </label>
-      )}
+      <label
+        htmlFor={name}
+        className="absolute left-2 -top-2.5 px-1 text-sm transition-all bg-white rounded text-gray-500 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-placeholder-shown:left-4 peer-placeholder-shown:bg-gray-200 peer-focus:-top-2.5 peer-focus:left-2 peer-focus:text-blue-500 peer-focus:bg-white"
+      >
+        {title}
+      </label>
     </div>
   );
 };
