@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 interface Movie {
   _id: string;
   title: string;
