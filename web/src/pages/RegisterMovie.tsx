@@ -1,8 +1,40 @@
+import { FormEvent, useState } from "react";
+import useRegisterMovie from "../hooks/useRegisterMovie";
 import Input from "../components/Input";
 
 const RegisterMovie = () => {
+  const { registerMovie } = useRegisterMovie();
+  const [title, setTitle] = useState<string>("");
+  const [rating, setRating] = useState<number>(0);
+  const [description, setDescription] = useState<string>("");
+  const [director, setDirector] = useState<string>("");
+  const [stars, setStars] = useState<string>("");
+  const [poster, setPoster] = useState<string>("");
+
+  const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newMovie = {
+      title,
+      rating,
+      description,
+      director,
+      stars: stars.split(","),
+      poster,
+    };
+    await registerMovie(newMovie);
+    setTitle("");
+    setRating(0);
+    setDescription("");
+    setDirector("");
+    setStars("");
+    setPoster("");
+  };
+
   return (
-    <form className="mt-12 mx-auto py-6 px-10 w-[50%] bg-white rounded">
+    <form
+      className="mt-12 mx-auto py-6 px-10 w-[50%] bg-white rounded"
+      onSubmit={handleSubmitForm}
+    >
       <div className="my-6">
         <Input title="Title" type="text" name="title" placeholder="Title" />
       </div>
