@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Movie } from "../types/Movie";
 import axios from "axios";
 
@@ -15,8 +15,6 @@ const useRegisterMovie = () => {
       console.log("Failed to register movie:", error);
     }
   };
-
-  useEffect(() => {}, []);
 
   return { movies, registerMovie };
 };
