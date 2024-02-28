@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import useRegisterMovie from "../hooks/useRegisterMovie";
 import Input from "../components/Input";
 
@@ -36,10 +36,26 @@ const RegisterMovie = () => {
       onSubmit={handleSubmitForm}
     >
       <div className="my-6">
-        <Input title="Title" type="text" name="title" placeholder="Title" />
+        <Input
+          title="Title"
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={title}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setTitle(e.target.value)
+          }
+        />
       </div>
       <div className="my-6">
-        <Input title="Rating" type="text" name="rating" placeholder="Rating" />
+        <Input
+          title="Rating"
+          type="text"
+          name="rating"
+          placeholder="Rating"
+          value={rating.toString()}
+          onChange={(e) => setRating(Number(e.target.value))}
+        />
       </div>
       <div className="my-6">
         <Input
@@ -47,6 +63,8 @@ const RegisterMovie = () => {
           type="text"
           name="description"
           placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <div className="my-6">
@@ -55,13 +73,29 @@ const RegisterMovie = () => {
           type="text"
           name="director"
           placeholder="Director"
+          value={director}
+          onChange={(e) => setDirector(e.target.value)}
         />
       </div>
       <div className="my-6">
-        <Input title="Stars" type="text" name="stars" placeholder="Stars" />
+        <Input
+          title="Stars"
+          type="text"
+          name="stars"
+          placeholder="Stars"
+          value={stars}
+          onChange={(e) => setStars(e.target.value)}
+        />
       </div>
       <div className="my-6">
-        <Input title="Poster" type="text" name="poster" placeholder="Poster" />
+        <Input
+          title="Poster"
+          type="text"
+          name="poster"
+          placeholder="Poster"
+          value={poster}
+          onChange={(e) => setPoster(e.target.value)}
+        />
       </div>
       <div className="flex items-center justify-center">
         <input
