@@ -1,18 +1,9 @@
 import { useEffect, useState } from "react";
+import { Movie } from "../types/Movie";
 import axios from "axios";
-interface Movie {
-  _id: string;
-  title: string;
-  rating: number;
-  description: string;
-  director: string;
-  stars: string[];
-  poster: string;
-}
 
 const useGetMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-
   const url = "http://localhost:3000/api/movie";
 
   const getMovies = async () => {
