@@ -8,8 +8,10 @@ import Logger from "../config/logger"
 import morganMiddleware from "./middleware/morganMiddleware"
 
 const app = express()
+const cors = require("cors")
 
 // COURS
+app.use(cors())
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
