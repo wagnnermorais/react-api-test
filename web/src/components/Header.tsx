@@ -15,6 +15,9 @@ const Header = () => {
             <Link to={"/"}>Home</Link>
           </li>
           <li className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200">
+            <Link to={"/movies"}>Movies</Link>
+          </li>
+          <li className="font-semibold text-lg text-purple-700 tracking-wide duration-300 hover:text-purple-200">
             <Link to={"/register"}>Register</Link>
           </li>
         </ul>
