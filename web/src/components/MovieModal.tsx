@@ -21,19 +21,19 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
             <h2 className="text-4xl font-bold my-6">{movie.title}</h2>
             <div className="my-4">
               <p className="text-2xl font-bold">Description:</p>
-              <p className="text-lg text-justify mt-2">{movie.description}</p>
+              <p className="text-xl text-justify mt-2">{movie.description}</p>
             </div>
             <div className="my-4">
               <p className="text-2xl font-bold">Rating:</p>
-              <p className="text-lg mt-2">{movie.rating}</p>
+              <p className="text-xl mt-2">{movie.rating}</p>
             </div>
             <div className="my-4">
               <p className="text-2xl font-bold">Director:</p>
-              <p className="text-lg mt-2">{movie.director}</p>
+              <p className="text-xl mt-2">{movie.director}</p>
             </div>
             <div className="my-4">
               <p className="text-2xl font-bold">Stars:</p>
-              <p className="text-lg mt-2">{movie.stars}</p>
+              <p className="text-xl mt-2">{movie.stars.join(", ")}</p>
             </div>
           </div>
         </div>
