@@ -3,12 +3,15 @@ import { Movie } from "../types/Movie";
 import { Search } from "lucide-react";
 import MovieModal from "../components/MovieModal";
 import useGetMovies from "../hooks/useGetMovies";
+import useDeleteMovie from "../hooks/useDeleteMovie";
 
 const MovieList = () => {
-  const movies: Movie[] = useGetMovies();
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [searchText, setSearchText] = useState<string>("");
-  const filteredMovies = movies.filter((movie) =>
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const allMovies: Movie[] = useGetMovies();
+  const deleteMovie = useDeleteMovie();
+  const filteredMovies = allMovies.filter((movie) =>
     movie.title.toLowerCase().includes(searchText.toLowerCase())
   );
 
@@ -18,6 +21,13 @@ const MovieList = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
+  };
+
+  const handleDeleteMovie = (movieId: string) => {
+    deleteMovie(movieId, () => {
+      setMovies(movies.filter((movie) => movie._id !== movieId));
+      setSelectedMovie(null);
+    });
   };
 
   return (
@@ -50,6 +60,7 @@ const MovieList = () => {
           <MovieModal
             movie={selectedMovie}
             onClose={() => setSelectedMovie(null)}
+            onDelete={handleDeleteMovie}
           />
         )}
       </div>

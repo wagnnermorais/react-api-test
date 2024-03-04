@@ -3,17 +3,27 @@ import { Movie } from "../types/Movie";
 import { MovieProps } from "../types/MovieProps";
 import MovieModal from "./MovieModal";
 import useGetMovies from "../hooks/useGetMovies";
+import useDeleteMovie from "../hooks/useDeleteMovie";
 
 const Movies = ({ searchText }: MovieProps) => {
-  const movies: Movie[] = useGetMovies(12);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const filteredMovies = movies.filter((movie) =>
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const allMovies: Movie[] = useGetMovies(12);
+  const deleteMovie = useDeleteMovie();
+  const filteredMovies = allMovies.filter((movie) =>
     movie.title.toLowerCase().includes(searchText.toLowerCase())
   );
 
   const handleSelectedMovie = (movie: Movie) => {
     setSelectedMovie(movie);
   };
+
+  const handleDeleteMovie = (movieId: string) => {
+    deleteMovie(movieId, () => {
+      setMovies(movies.filter((movie) => movie._id !== movieId));
+    });
+  };
+
   return (
     <div className="grid grid-cols-4 gap-4 w-[80%] my-12 mx-auto">
       {filteredMovies.map((movie) => (
@@ -33,6 +43,7 @@ const Movies = ({ searchText }: MovieProps) => {
         <MovieModal
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
+          onDelete={handleDeleteMovie}
         />
       )}
     </div>

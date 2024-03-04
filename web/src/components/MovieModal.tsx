@@ -1,7 +1,16 @@
 import { MovieModalProps } from "../types/MovieModalProps";
 import { X } from "lucide-react";
 
-const MovieModal = ({ movie, onClose }: MovieModalProps) => {
+const MovieModal = ({ movie, onClose, onDelete }: MovieModalProps) => {
+  const handleDelete = () => {
+    if (movie._id) {
+      onDelete(movie._id);
+      onClose();
+    } else {
+      console.error("Movie ID is undefined");
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
       <div className="bg-black bg-opacity-70 absolute inset-0"></div>
@@ -35,6 +44,12 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
               <p className="text-2xl font-bold">Stars:</p>
               <p className="text-xl mt-2">{movie.stars.join(", ")}</p>
             </div>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
