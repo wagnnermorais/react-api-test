@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Movie } from "../types/Movie";
 import { Search } from "lucide-react";
 import MovieModal from "../components/MovieModal";
@@ -29,6 +29,10 @@ const MovieList = () => {
       setSelectedMovie(null);
     });
   };
+
+  useEffect(() => {
+    setMovies(allMovies);
+  }, [allMovies]);
 
   return (
     <div>
