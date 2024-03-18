@@ -1,20 +1,33 @@
+import { useState } from "react";
 import { MovieModalProps } from "../types/MovieModalProps";
 import { X } from "lucide-react";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 const MovieModal = ({ movie, onClose, onDelete }: MovieModalProps) => {
+  const [showConfirmationModal, setShowConfirmationModal] =
+    useState<boolean>(false);
+
+  const handleOpenConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
   const handleDelete = () => {
     if (movie._id) {
       onDelete(movie._id);
       onClose();
-    } else {
-      console.error("Movie ID is undefined");
+      setShowConfirmationModal(false);
+      window.location.reload();
     }
   };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
       <div className="bg-black bg-opacity-70 absolute inset-0"></div>
-      <div className="relative bg-black text-white w-[60%] h-[80%] overflow-auto">
+      <div className="relative bg-black text-white w-[65%] h-[85%] overflow-auto">
         <button onClick={onClose} className="absolute top-0 right-0 m-4">
           <X size={36} />
         </button>
@@ -44,15 +57,23 @@ const MovieModal = ({ movie, onClose, onDelete }: MovieModalProps) => {
               <p className="text-2xl font-bold">Stars:</p>
               <p className="text-xl mt-2">{movie.stars.join(", ")}</p>
             </div>
-            <button
-              onClick={handleDelete}
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4"
-            >
-              Delete
-            </button>
+            <div className="absolute bottom-4">
+              <button
+                onClick={handleOpenConfirmationModal}
+                className="mt-4 py-2 px-4 rounded font-bold uppercase text-white bg-red-500 hover:bg-red-600 duration-300"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      {showConfirmationModal && (
+        <DeleteConfirmationModal
+          onClick={handleDelete}
+          onClose={handleCloseConfirmationModal}
+        />
+      )}
     </div>
   );
 };
