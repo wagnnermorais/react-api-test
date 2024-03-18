@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { toast, Bounce, ToastContainer } from "react-toastify";
 import useRegisterMovie from "../hooks/useRegisterMovie";
 import Input from "../components/Input";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterMovie = () => {
   const { registerMovie } = useRegisterMovie();
@@ -28,6 +30,16 @@ const RegisterMovie = () => {
     setDirector("");
     setStars("");
     setPoster("");
+    toast.success("Movie listed successfully", {
+      position: "bottom-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
@@ -104,6 +116,7 @@ const RegisterMovie = () => {
           className="py-3 w-1/3 text-md font-bold bg-zinc-950 text-white rounded cursor-pointer duration-300 hover:bg-opacity-90"
         />
       </div>
+      <ToastContainer />
     </form>
   );
 };
