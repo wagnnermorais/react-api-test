@@ -15,13 +15,13 @@ const DeleteConfirmationModal = ({
           <div className="flex items-center justify-center gap-8">
             <button
               onClick={onClick}
-              className="w-[10rem] p-2 rounded mt-4 bg-red-500 hover:bg-red-600 text-white font-bold"
+              className="w-[10rem] p-2 rounded mt-4 bg-red-500 hover:bg-red-600 text-white font-bold duration-300"
             >
               Yes, delete
             </button>
             <button
               onClick={onClose}
-              className="w-[10rem] p-2 rounded mt-4 border-2 border-purple-700 text-white bg-zinc-950 font-bold duration-300 hover:bg-zinc-900"
+              className="w-[10rem] p-2 rounded mt-4 font-bold bg-zinc-950 text-white cursor-pointer duration-300 hover:bg-opacity-90"
             >
               Cancel
             </button>
